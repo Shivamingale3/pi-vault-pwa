@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics><meta name="design_doc_mode" content="canvas"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"><style>
+body{margin:0;background:#e7e5e0;font-family:'Plus Jakarta Sans',system-ui,sans-serif}
+a{color:#101010}a:hover{color:#000}
+button:focus-visible,a:focus-visible{outline:2px solid #101010;outline-offset:3px;border-radius:8px}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-6px)}40%{transform:translateX(5px)}60%{transform:translateX(-3px)}80%{transform:translateX(2px)}}
+@keyframes crawl{0%{transform:translateX(-100%)}100%{transform:translateX(320%)}}
+@keyframes breathe{0%,100%{opacity:1}50%{opacity:.5}}
+@media (prefers-reduced-motion: reduce){*{animation-duration:.01ms !important;animation-iteration-count:1 !important}}
+</style></helmet>
+
+<section style="padding:44px 48px 60px">
+<div style="display:flex;align-items:baseline;gap:12px;margin:0 0 8px">
+  <span style="font:700 10px/1 ui-monospace,monospace;padding:4px 8px;background:#101010;color:#fefefe;border-radius:5px">10</span>
+  <h2 style="margin:0;font:800 20px/1.2 'Plus Jakarta Sans',system-ui;letter-spacing:-0.03em;color:#101010">PiDrive — sync</h2>
+</div>
+<p style="margin:0 0 34px;max-width:780px;font:500 13.5px/1.6 'Plus Jakarta Sans',system-ui;color:#5f5c57;text-wrap:pretty">Six screens. Sync runs on app open and never blocks the way in: both failure screens and the offline state leave a path to the vault, and offline is a pill rather than an interruption. Dark row below.</p>
+
+<div style="display:flex;gap:40px;flex-wrap:wrap;align-items:flex-start">
+<div style="display:flex;align-items:baseline;gap:10px;padding:0 0 26px;width:100%">
+  <span style="font:700 9.5px/1 ui-monospace,monospace;letter-spacing:0.2em;color:#a09d97">LIGHT</span>
+  <span style="font:700 15px/1 'Plus Jakarta Sans',system-ui;letter-spacing:-0.02em;color:#101010">Six screens, light theme</span>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:14px">
+  <div><div style="font:700 10px/1 ui-monospace,monospace;letter-spacing:0.18em;color:#a09d97">SYNC 01</div><div style="margin-top:6px;font:700 14px/1.3 'Plus Jakarta Sans',system-ui;color:#101010">Syncing</div><div style="margin-top:3px;font:500 11.5px/1.4 'Plus Jakarta Sans',system-ui;color:#77746e">Blocking · on app open</div></div>
+<x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" hint-size="402px,874px">
+<div style="height:100%;box-sizing:border-box;padding:104px 26px 34px;display:flex;flex-direction:column;align-items:center;background:#ffffff">
+  <div style="width:46px;height:46px;border-radius:16px;background:#101010;display:flex;align-items:center;justify-content:center;font:800 21px/1 'Plus Jakarta Sans',system-ui;color:#fefefe">&#960;</div>
+  <div style="margin-top:14px;font:700 9.5px/1 ui-monospace,monospace;letter-spacing:0.22em;color:#a09d97">PI.LOCAL</div>
+
+  <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;width:100%">
+    <div style="width:104px;height:104px;position:relative;display:flex;align-items:center;justify-content:center">
+      <svg width="104" height="104" viewBox="0 0 104 104" fill="none" style="position:absolute;inset:0;animation:spin 1.15s linear infinite">
+        <circle cx="52" cy="52" r="46" stroke="#eceae5" stroke-width="5"></circle>
+        <path d="M52 6a46 46 0 0140.6 24.3" stroke="#101010" stroke-width="5" stroke-linecap="round"></path>
+      </svg>
+      <span style="font:800 19px/1 'Plus Jakarta Sans',system-ui;letter-spacing:-0.03em;color:#101010">30%</span>
+    </div>
+
+    <div style="text-align:center">
+      <h1 style="margin:0;font:800 26px/1.2 'Plus Jakarta Sans',system-ui;letter-spacing:-0.035em;color:#101010">Syncing your vault</h1>
+      <p style="margin:11px 0 0;font:500 14px/1.55 'Plus Jakarta Sans',system-ui;color:#77746e;text-wrap:pretty">Pulling changes · 12 of 40</p>
+    </div>
+
+    <div style="width:100%;padding:18px;box-sizing:border-box;border-radius:24px;background:#f5f4f1">
+      <div style="display:flex;flex-direction:column;gap:13px">
+        <div style="display:flex;align-items:center;gap:11px">
+          <span style="width:20px;height:20px;border-radius:50%;background:#101010;display:flex;align-items:center;justify-content:center;flex:none">
+            <svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="#fefefe" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6.4l2.4 2.4L9.5 3.6"></path></svg>
+          </span>
+          <span style="flex:1;font:600 13px/1 'Plus Jakarta Sans',system-ui;color:#101010">Passwords</span>
+          <span style="font:600 11.5px/1 ui-monospace,monospace;color:#77746e">42</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:11px">
+          <span style="width:20px;height:20px;border-radius:50%;border:2px solid #101010;flex:none;animation:breathe 1.4s ease-in-out infinite"></span>
+          <span style="flex:1;font:700 13px/1 'Plus Jakarta Sans',system-ui;color:#101010">Notes</span>
+          <span style="font:600 11.5px/1 ui-monospace,monospace;color:#77746e">7 of 12</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:11px">
+          <span style="width:20px;height:20px;border-radius:50%;border:2px solid #eceae5;flex:none"></span>
+          <span style="flex:1;font:600 13px/1 'Plus Jakarta Sans',system-ui;color:#a09d97">Media index</span>
+          <span style="font:600 11.5px/1 ui-monospace,monospace;color:#a09d97">waiting</span>
+        </div>
+      </div>
+      <div style="margin-top:16px;height:4px;border-radius:2px;background:#eceae5;overflow:hidden">
+        <div style="width:32%;height:100%;border-radius:2px;background:#101010;animation:crawl 1.9s ease-in-out infinite"></div>
+      </div>
+    </div>
+  </div>
+
+  <p style="margin:0;font:500 11.5px/1.55 'Plus Jakarta Sans',system-ui;color:#a09d97;text-align:center;text-wrap:pretty">Keep the app open. This usually takes a few seconds.</p>
+</div>
+</x-import>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:14px">
+  <div><div style="font:700 10px/1 ui-monospace,monospace;letter-spacing:0.18em;color:#a09d97">SYNC 02</div><div style="margin-top:6px;font:700 14px/1.3 'Plus Jakarta Sans',system-ui;color:#101010">Sync failed</div><div style="margin-top:3px;font:500 11.5px/1.4 'Plus Jakarta Sans',system-ui;color:#77746e">Blocking · way in stays open</div></div>
+<x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" hint-size="402px,874px">
+<div style="height:100%;box-sizing:border-box;padding:104px 26px 34px;display:flex;flex-direction:column;align-items:center;background:#ffffff">
+  <div style="width:46px;height:46px;border-radius:16px;background:#101010;display:flex;align-items:center;justify-content:center;font:800 21px/1 'Plus Jakarta Sans',system-ui;color:#fefefe">&#960;</div>
+  <div style="margin-top:14px;font:700 9.5px/1 ui-monospace,monospace;letter-spacing:0.22em;color:#c23c1a">PI.LOCAL · NO ANSWER</div>
+
+  <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;width:100%">
+    <div style="width:104px;height:104px;border-radius:34px;background:#fdeeea;display:flex;align-items:center;justify-content:center;animation:shake .5s ease-out">
+      <svg width="46" height="46" viewBox="0 0 48 48" fill="none" stroke="#c23c1a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 19a21 21 0 0130 0"></path>
+        <path d="M15 26a13 13 0 0118 0"></path>
+        <path d="M17 9L31 39"></path>
+        <circle cx="24" cy="34" r="1.6" fill="#c23c1a" stroke="none"></circle>
+      </svg>
+    </div>
+
+    <div style="text-align:center">
+      <h1 style="margin:0;font:800 26px/1.2 'Plus Jakarta Sans',system-ui;letter-spacing:-0.035em;color:#101010">Couldn't reach your server</h1>
+      <p style="margin:11px 0 0;font:500 14px/1.55 'Plus Jakarta Sans',system-ui;color:#77746e;text-wrap:pretty">Your vault still works. Everything you change now is saved on this phone and goes up to pi.local the next time it answers.</p>
+    </div>
+
+    <div style="width:100%;padding:16px 18px;box-sizing:border-box;border-radius:24px;background:#f5f4f1;display:flex;flex-direction:column;gap:11px">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+        <span style="font:600 12.5px/1 'Plus Jakarta Sans',system-ui;color:#77746e">Last synced</span>
+        <span style="font:600 12.5px/1 ui-monospace,monospace;color:#101010">Today, 08:14</span>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+        <span style="font:600 12.5px/1 'Plus Jakarta Sans',system-ui;color:#77746e">Waiting to upload</span>
+        <span style="font:600 12.5px/1 ui-monospace,monospace;color:#101010">3 changes</span>
+      </div>
+    </div>
+  </div>
+
+  <div style="width:100%;display:flex;flex-direction:column;gap:10px">
+    <button type="button" style="height:60px;border-radius:30px;border:none;background:#101010;color:#fefefe;font:700 15.5px/1 'Plus Jakarta Sans',system-ui;cursor:pointer">Continue offline</button>
+    <button type="button" style="height:56px;border-radius:28px;border:1.5px solid #eceae5;background:#ffffff;font:700 14px/1 'Plus Jakarta Sans',system-ui;color:#101010;cursor:pointer">Try again</button>
+  </div>
+</div>
+</x-import>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:14px">
+  <div><div style="font:700 10px/1 ui-monospace,monospace;letter-spacing:0.18em;color:#a09d97">SYNC 03</div><div style="margin-top:6px;font:700 14px/1.3 'Plus Jakarta Sans',system-ui;color:#101010">Sync timed out</div><div style="margin-top:3px;font:500 11.5px/1.4 'Plus Jakarta Sans',system-ui;color:#77746e">Blocking · 60-second limit</div></div>
+<x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" hint-size="402px,874px">
+<div style="height:100%;box-sizing:border-box;padding:104px 26px 34px;display:flex;flex-direction:column;align-items:center;background:#ffffff">
+  <div style="width:46px;height:46px;border-radius:16px;background:#101010;display:flex;align-items:center;justify-content:center;font:800 21px/1 'Plus Jakarta Sans',system-ui;color:#fefefe">&#960;</div>
+  <div style="margin-top:14px;font:700 9.5px/1 ui-monospace,monospace;letter-spacing:0.22em;color:#c23c1a">PI.LOCAL · GAVE UP AT 60S</div>
+
+  <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;width:100%">
+    <div style="width:104px;height:104px;position:relative;display:flex;align-items:center;justify-content:center">
+      <svg width="104" height="104" viewBox="0 0 104 104" fill="none" style="position:absolute;inset:0">
+        <circle cx="52" cy="52" r="46" stroke="#fdeeea" stroke-width="5"></circle>
+        <circle cx="52" cy="52" r="46" stroke="#c23c1a" stroke-width="5" stroke-linecap="round" stroke-dasharray="289" stroke-dashoffset="0" transform="rotate(-90 52 52)"></circle>
+      </svg>
+      <svg width="40" height="40" viewBox="0 0 44 44" fill="none" stroke="#c23c1a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="22" cy="22" r="15"></circle><path d="M22 13v9.6l6 3.6"></path></svg>
+    </div>
+
+    <div style="text-align:center">
+      <h1 style="margin:0;font:800 26px/1.2 'Plus Jakarta Sans',system-ui;letter-spacing:-0.035em;color:#101010">Your server is taking too long</h1>
+      <p style="margin:11px 0 0;font:500 14px/1.55 'Plus Jakarta Sans',system-ui;color:#77746e;text-wrap:pretty">pi.local answered but never finished. We stopped after a minute rather than leave you waiting.</p>
+    </div>
+
+    <div style="width:100%;padding:16px 18px;box-sizing:border-box;border-radius:24px;background:#f5f4f1;display:flex;flex-direction:column;gap:11px">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+        <span style="font:600 12.5px/1 'Plus Jakarta Sans',system-ui;color:#77746e">Got through</span>
+        <span style="font:600 12.5px/1 ui-monospace,monospace;color:#101010">Passwords · 42</span>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+        <span style="font:600 12.5px/1 'Plus Jakarta Sans',system-ui;color:#77746e">Stopped during</span>
+        <span style="font:600 12.5px/1 ui-monospace,monospace;color:#c23c1a">Notes · 7 of 12</span>
+      </div>
+      <div style="padding-top:10px;border-top:1px solid #eceae5;font:500 12px/1.5 'Plus Jakarta Sans',system-ui;color:#77746e;text-wrap:pretty">Half a sync is safe. Nothing was overwritten, and the rest picks up where it stopped.</div>
+    </div>
+  </div>
+
+  <div style="width:100%;display:flex;flex-direction:column;gap:10px">
+    <button type="button" style="height:60px;border-radius:30px;border:none;background:#101010;color:#fefefe;font:700 15.5px/1 'Plus Jakarta Sans',system-ui;cursor:pointer">Continue offline</button>
+    <button type="button" style="height:56px;border-radius:28px;border:1.5px solid #eceae5;background:#ffffff;font:700 14px/1 'Plus Jakarta Sans',system-ui;color:#101010;cursor:pointer">Try again</button>
+  </div>
+</div>
+</x-import>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:14px">
+  <div><div style="font:700 10px/1 ui-monospace,monospace;letter-spacing:0.18em;color:#a09d97">SYNC 04</div><div style="margin-top:6px;font:700 14px/1.3 'Plus Jakarta Sans',system-ui;color:#101010">Offline, no sync</div><div style="margin-top:3px;font:500 11.5px/1.4 'Plus Jakarta Sans',system-ui;color:#77746e">Inline pill · not an error</div></div>
+<x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" hint-size="402px,874px">
+<div style="height:100%;box-sizing:border-box;padding:98px 0 0;display:flex;flex-direction:column;background:#fbfaf8">
+  <div style="flex:1;overflow:hidden;display:flex;flex-direction:column">
+    <div style="padding:0 22px;display:flex;align-items:flex-end;justify-content:space-between;gap:14px">
+      <div>
+        <h1 style="margin:0;font:800 27px/1.1 'Plus Jakarta Sans',system-ui;letter-spacing:-0.04em;color:#101010">Passwords</h1>
+        <div style="margin-top:7px;font:500 12.5px/1 'Plus Jakarta Sans',system-ui;color:#77746e">42 items</div>
+      </div>
+      <button type="button" aria-label="Search" style="width:40px;height:40px;border-radius:14px;border:1.5px solid #eceae5;background:#ffffff;display:flex;align-items:center;justify-content:center;cursor:pointer;flex:none">
+        <svg width="17" height="17" viewBox="0 0 18 18" fill="none" stroke="#101010" stroke-width="1.9" stroke-linecap="round"><circle cx="8" cy="8" r="5"></circle><path d="M11.8 11.8L15 15"></path></svg>
+      </button>
+    </div>
+
+    <div style="margin:16px 22px 0;display:flex">
+      <div style="display:flex;align-items:center;gap:9px;padding:9px 15px 9px 13px;border-radius:20px;background:#f5f4f1;border:1.5px solid #eceae5">
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="#77746e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="M2.6 6.2a9 9 0 0110.8 0"></path><path d="M4.8 9a5.6 5.6 0 016.4 0"></path><path d="M4.4 2.4l7.2 11.2"></path><circle cx="8" cy="11.8" r=".9" fill="#77746e" stroke="none"></circle></svg>
+        <span style="font:600 12px/1 'Plus Jakarta Sans',system-ui;color:#77746e">Offline · changes will sync later</span>
+      </div>
+    </div>
+
+    <div style="padding:14px 22px 0;display:flex;flex-direction:column;gap:9px">
+      <div style="display:flex;align-items:center;gap:13px;padding:13px 16px;border-radius:18px;background:#ffffff;border:1.5px solid #eceae5">
+        <span style="width:38px;height:38px;border-radius:12px;background:#f5f4f1;display:flex;align-items:center;justify-content:center;font:800 15px/1 'Plus Jakarta Sans',system-ui;color:#101010;flex:none">C</span>
+        <span style="flex:1;min-width:0">
+          <span style="display:block;font:700 14.5px/1.2 'Plus Jakarta Sans',system-ui;color:#101010">Cloudflare</span>
+          <span style="display:block;margin-top:5px;font:500 11.5px/1 'Plus Jakarta Sans',system-ui;color:#77746e">shivam@pidrive.app</span>
+        </span>
+        <span style="width:7px;height:7px;border-radius:50%;background:#a09d97;flex:none"></span>
+      </div>
+      <div style="display:flex;align-items:center;gap:13px;padding:13px 16px;border-radius:18px;background:#ffffff;border:1.5px solid #eceae5">
+        <span style="width:38px;height:38px;border-radius:12px;background:#f5f4f1;display:flex;align-items:center;justify-content:center;font:800 15px/1 'Plus Jakarta Sans',system-ui;color:#101010;flex:none">G</span>
+        <span style="flex:1;min-width:0">
+          <span style="display:block;font:700 14.5px/1.2 'Plus Jakarta Sans',system-ui;color:#101010">GitHub</span>
+          <span style="display:block;margin-top:5px;font:500 11.5px/1 'Plus Jakarta Sans',system-ui;color:#77746e">Edited offline</span>
+        </span>
+        <span style="width:7px;height:7px;border-radius:50%;background:#a09d97;flex:none"></span>
+      </div>
+      <div style="display:flex;align-items:center;gap:13px;padding:13px 16px;border-radius:18px;background:#ffffff;border:1.5px solid #eceae5">
+        <span style="width:38px;height:38px;border-radius:12px;background:#f5f4f1;display:flex;align-items:center;justify-content:center;font:800 15px/1 'Plus Jakarta Sans',system-ui;color:#101010;flex:none">T</span>
+        <span style="flex:1;min-width:0">
+          <span style="display:block;font:700 14.5px/1.2 'Plus Jakarta Sans',system-ui;color:#101010">Tailscale</span>
+          <span style="display:block;margin-top:5px;font:500 11.5px/1 'Plus Jakarta Sans',system-ui;color:#77746e">shivam@pidrive.app</span>
+        </span>
+      </div>
+      <div style="display:flex;align-items:center;gap:13px;padding:13px 16px;border-radius:18px;background:#ffffff;border:1.5px solid #eceae5">
+        <span style="width:38px;height:38px;border-radius:12px;background:#f5f4f1;display:flex;align-items:center;justify-content:center;font:800 15px/1 'Plus Jakarta Sans',system-ui;color:#101010;flex:none">H</span>
+        <span style="flex:1;min-width:0">
+          <span style="display:block;font:700 14.5px/1.2 'Plus Jakarta Sans',system-ui;color:#101010">HDFC Bank</span>
+          <span style="display:block;margin-top:5px;font:500 11.5px/1 'Plus Jakarta Sans',system-ui;color:#77746e">shivam.k</span>
+        </span>
+      </div>
+    </div>
+
+    <div style="margin:18px 22px 0;padding:15px 17px;border-radius:20px;border:1.5px dashed #eceae5;display:flex;gap:12px;align-items:flex-start">
+      <span style="width:7px;height:7px;border-radius:50%;background:#a09d97;flex:none;margin-top:5px"></span>
+      <span style="font:500 12px/1.55 'Plus Jakarta Sans',system-ui;color:#77746e;text-wrap:pretty">A dot marks the two items edited since the last sync. They go up on their own once pi.local is back.</span>
+    </div>
+  </div>
+
+  <div style="display:flex;align-items:center;justify-content:space-around;padding:10px 8px 30px;background:#ffffff;border-top:1.5px solid #eceae5">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:8px 16px;min-width:56px">
+      <svg width="21" height="21" viewBox="0 0 22 22" fill="none" stroke="#a09d97" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l8-6 8 6v9a1.5 1.5 0 01-1.5 1.5h-13A1.5 1.5 0 013 18z"></path></svg>
+      <span style="font:600 10px/1 'Plus Jakarta Sans',system-ui;color:#a09d97">Home</span>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:8px 16px;min-width:56px">
+      <svg width="21" height="21" viewBox="0 0 22 22" fill="none" stroke="#101010" stroke-width="1.9" stroke-linecap="round"><circle cx="8" cy="11" r="3.4"></circle><path d="M11.4 11H19M16 11v3"></path></svg>
+      <span style="font:700 10px/1 'Plus Jakarta Sans',system-ui;color:#101010">Passwords</span>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:8px 16px;min-width:56px">
+      <svg width="21" height="21" viewBox="0 0 22 22" fill="none" stroke="#a09d97" stroke-width="1.9" stroke-linecap="round"><path d="M5 3h9l4 4v12H5z"></path><path d="M8 9h6M8 13h6"></path></svg>
+      <span style="font:600 10px/1 'Plus Jakarta Sans',system-ui;color:#a09d97">Notes</span>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:8px 16px;min-width:56px;opacity:.38">
+      <svg width="21" height="21" viewBox="0 0 22 22" fill="none" stroke="#a09d97" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6.5A1.5 1.5 0 014.5 5h4L10 7h7.5A1.5 1.5 0 0119 8.5v8A1.5 1.5 0 0117.5 18h-13A1.5 1.5 0 013 16.5z"></path></svg>
+      <span style="font:600 10px/1 'Plus Jakarta Sans',system-ui;color:#a09d97">Media</span>
+    </div>
+  </div>
+</div>
+</x-import>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:14px">
+  <div><div style="font:700 10px/1 ui-monospace,monospace;letter-spacing:0.18em;color:#a09d97">SYNC 05</div><div style="margin-top:6px;font:700 14px/1.3 'Plus Jakarta Sans',system-ui;color:#101010">Settings › Sync</div><div style="margin-top:3px;font:500 11.5px/1.4 'Plus Jakarta Sans',system-ui;color:#77746e">Sync now opens screen 1</div></div>
+<x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" hint-size="402px,874px">
+<div style="height:100%;box-sizing:border-box;padding:98px 0 0;display:flex;flex-direction:column;background:#fbfaf8">
+  <div style="padding:0 18px;display:flex;align-items:center;gap:12px">
+    <button type="button" aria-label="Back to settings" style="width:42px;height:42px;border-radius:14px;border:none;background:#f5f4f1;display:flex;align-items:center;justify-content:center;cursor:pointer;flex:none">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#101010" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 3.5L5.5 9l5.5 5.5"></path></svg>
+    </button>
+    <span style="font:700 15px/1 'Plus Jakarta Sans',system-ui;letter-spacing:-0.02em;color:#101010">Settings</span>
+  </div>
+
+  <div style="padding:20px 22px 0">
+    <h1 style="margin:0;font:800 27px/1.1 'Plus Jakarta Sans',system-ui;letter-spacing:-0.04em;color:#101010">Sync</h1>
+
+    <div style="margin-top:20px;padding:22px;border-radius:26px;background:#ffffff;border:1.5px solid #eceae5">
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="width:9px;height:9px;border-radius:50%;background:#0e7c66;flex:none"></span>
+        <span style="font:700 13.5px/1 'Plus Jakarta Sans',system-ui;color:#101010">Up to date</span>
+      </div>
+      <div style="margin-top:14px;font:800 30px/1 'Plus Jakarta Sans',system-ui;letter-spacing:-0.04em;color:#101010">4 min ago</div>
+      <div style="margin-top:8px;font:500 12.5px/1.5 'Plus Jakarta Sans',system-ui;color:#77746e">Today at 09:52 · pi.local</div>
+      <button type="button" style="width:100%;height:60px;margin-top:20px;border-radius:30px;border:none;background:#101010;color:#fefefe;font:700 15.5px/1 'Plus Jakarta Sans',system-ui;cursor:pointer">Sync now</button>
+    </div>
+
+    <div style="margin-top:22px;font:700 9.5px/1 ui-monospace,monospace;letter-spacing:0.18em;color:#a09d97">WHAT SYNCED</div>
+    <div style="margin-top:12px;border-radius:24px;background:#ffffff;border:1.5px solid #eceae5;overflow:hidden">
+      <div style="display:flex;align-items:center;gap:12px;padding:16px 18px;border-bottom:1px solid #eceae5">
+        <span style="flex:1;font:600 14px/1 'Plus Jakarta Sans',system-ui;color:#101010">Passwords</span>
+        <span style="font:600 12.5px/1 ui-monospace,monospace;color:#77746e">42 items</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;padding:16px 18px;border-bottom:1px solid #eceae5">
+        <span style="flex:1;font:600 14px/1 'Plus Jakarta Sans',system-ui;color:#101010">Notes</span>
+        <span style="font:600 12.5px/1 ui-monospace,monospace;color:#77746e">12 notes</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;padding:16px 18px">
+        <span style="flex:1;font:600 14px/1 'Plus Jakarta Sans',system-ui;color:#101010">Media index</span>
+        <span style="font:600 12.5px/1 ui-monospace,monospace;color:#77746e">8 files</span>
+      </div>
+    </div>
+
+    <div style="margin-top:22px;font:700 9.5px/1 ui-monospace,monospace;letter-spacing:0.18em;color:#a09d97">WHEN IT RUNS</div>
+    <div style="margin-top:12px;border-radius:24px;background:#ffffff;border:1.5px solid #eceae5;overflow:hidden">
+      <div style="display:flex;align-items:center;gap:14px;padding:17px 18px;border-bottom:1px solid #eceae5">
+        <span style="flex:1">
+          <span style="display:block;font:600 14px/1.2 'Plus Jakarta Sans',system-ui;color:#101010">On app open</span>
+          <span style="display:block;margin-top:5px;font:500 11.5px/1.3 'Plus Jakarta Sans',system-ui;color:#77746e">Skipped when you are offline</span>
+        </span>
+        <span style="width:48px;height:29px;border-radius:15px;background:#101010;padding:3px;box-sizing:border-box;display:flex;justify-content:flex-end;flex:none">
+          <span style="width:23px;height:23px;border-radius:50%;background:#ffffff"></span>
+        </span>
+      </div>
+      <div style="display:flex;align-items:center;gap:14px;padding:17px 18px">
+        <span style="flex:1">
+          <span style="display:block;font:600 14px/1.2 'Plus Jakarta Sans',system-ui;color:#101010">Only on Wi-Fi</span>
+          <span style="display:block;margin-top:5px;font:500 11.5px/1.3 'Plus Jakarta Sans',system-ui;color:#77746e">pi.local is on your home network anyway</span>
+        </span>
+        <span style="width:48px;height:29px;border-radius:15px;background:#eceae5;padding:3px;box-sizing:border-box;display:flex;justify-content:flex-start;flex:none">
+          <span style="width:23px;height:23px;border-radius:50%;background:#ffffff"></span>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+</x-import>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:14px">
+  <div><div style="font:700 10px/1 ui-monospace,monospace;letter-spacing:0.18em;color:#a09d97">SYNC 06</div><div style="margin-top:6px;font:700 14px/1.3 'Plus Jakarta Sans',system-ui;color:#101010">Sync complete</div><div style="margin-top:3px;font:500 11.5px/1.4 'Plus Jakarta Sans',system-ui;color:#77746e">Brief · then the vault</div></div>
+<x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" hint-size="402px,874px">
+<div style="height:100%;box-sizing:border-box;padding:104px 30px 40px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;background:#0e0f11">
+  <div style="width:112px;height:112px;border-radius:38px;background:rgba(53,195,154,0.14);display:flex;align-items:center;justify-content:center;animation:rise .3s ease-out">
+    <svg width="52" height="52" viewBox="0 0 52 52" fill="none" stroke="#35c39a" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M13 27.5l8.5 8.5L39 18"></path></svg>
+  </div>
+  <div style="text-align:center">
+    <div style="font:800 26px/1.2 'Plus Jakarta Sans',system-ui;letter-spacing:-0.035em;color:#fdfdfd">Vault up to date</div>
+    <p style="margin:11px 0 0;font:500 14px/1.55 'Plus Jakarta Sans',system-ui;color:rgba(255,255,255,0.58);text-wrap:pretty">40 items in, 3 changes up. Opening your vault.</p>
+  </div>
+  <div style="display:flex;align-items:center;gap:9px;padding:11px 16px;border-radius:20px;background:rgba(255,255,255,0.07)">
+    <span style="width:7px;height:7px;border-radius:50%;background:#35c39a;flex:none"></span>
+    <span style="font:600 11.5px/1 ui-monospace,monospace;letter-spacing:0.08em;color:rgba(255,255,255,0.72)">PI.LOCAL · 09:56</span>
+  </div>
+</div>
+</x-import>
+</div>
+
+<div style="display:flex;align-items:baseline;gap:10px;padding:34px 0 26px;width:100%">
+  <span style="font:700 9.5px/1 ui-monospace,monospace;letter-spacing:0.2em;color:#a09d97">DARK</span>
+  <span style="font:700 15px/1 'Plus Jakarta Sans',system-ui;letter-spacing:-0.02em;color:#101010">The same six, dark theme</span>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:14px">
+  <div><div style="font:700 10px/1 ui-monospace,monospace;letter-spacing:0.18em;color:#a09d97">SYNC 01</div><div style="margin-top:6px;font:700 14px/1.3 'Plus Jakarta Sans',system-ui;color:#101010">Syncing</div><div style="margin-top:3px;font:500 11.5px/1.4 'Plus Jakarta Sans',system-ui;color:#77746e">Blocking · on app open</div></div>
+<x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" dark="{{ true }}" hint-size="402px,874px">
+<div style="height:100%;box-sizing:border-box;padding:104px 26px 34px;display:flex;flex-direction:column;align-items:center;background:#14161a">
+  <div style="width:46px;height:46px;border-radius:16px;background:#f2f1ee;display:flex;align-items:center;justify-content:center;font:800 21px/1 'Plus Jakarta Sans',system-ui;color:#101215">&#960;</div>
+  <div style="margin-top:14px;font:700 9.5px/1 ui-monospace,monospace;letter-spacing:0.22em;color:#7e8085">PI.LOCAL</div>
+
+  <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;width:100%">
+    <div style="width:104px;height:104px;position:relative;display:flex;align-items:center;justify-content:center">
+      <svg width="104" height="104" viewBox="0 0 104 104" fill="none" style="position:absolute;inset:0;animation:spin 1.15s linear infinite">
+        <circle cx="52" cy="52" r="46" stroke="#2b2f34" stroke-width="5"></circle>
+        <path d="M52 6a46 46 0 0140.6 24.3" stroke="#f2f1ee" stroke-width="5" stroke-linecap="round"></path>
+      </svg>
+      <span style="font:800 19px/1 'Plus Jakarta Sans',system-ui;letter-spacing:-0.03em;color:#f2f1ee">30%</span>
+    </div>
+
+    <div style="text-align:center">
+      <h1 style="margin:0;font:800 26px/1.2 'Plus Jakarta Sans',system-ui;letter-spacing:-0.035em;color:#f2f1ee">Syncing your vault</h1>
+      <p style="margin:11px 0 0;font:500 14px/1.55 'Plus Jakarta Sans',system-ui;color:#9b9ca1;text-wrap:pretty">Pulling changes · 12 of 40</p>
+    </div>
+
+    <div style="width:100%;padding:18px;box-sizing:border-box;border-radius:24px;background:#1c1f23">
+      <div style="display:flex;flex-direction:column;gap:13px">
+        <div style="display:flex;align-items:center;gap:11px">
+          <span style="width:20px;height:20px;border-radius:50%;background:#f2f1ee;display:flex;align-items:center;justify-content:center;flex:none">
+            <svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="#101215" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6.4l2.4 2.4L9.5 3.6"></path></svg>
+          </span>
+          <span style="flex:1;font:600 13px/1 'Plus Jakarta Sans',system-ui;color:#f2f1ee">Passwords</span>
+          <span style="font:600 11.5px/1 ui-monospace,monospace;color:#9b9ca1">42</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:11px">
+          <span style="width:20px;height:20px;border-radius:50%;border:2px solid #f2f1ee;flex:none;animation:breathe 1.4s ease-in-out infinite"></span>
+          <span style="flex:1;font:700 13px/1 'Plus Jakarta Sans',system-ui;color:#f2f1ee">Notes</span>
+          <span style="font:600 11.5px/1 ui-monospace,monospace;color:#9b9ca1">7 of 12</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:11px">
+          <span style="width:20px;height:20px;border-radius:50%;border:2px solid #2b2f34;flex:none"></span>
+          <span style="flex:1;font:600 13px/1 'Plus Jakarta Sans',system-ui;color:#7e8085">Media index</span>
+          <span style="font:600 11.5px/1 ui-monospace,monospace;color:#7e8085">waiting</span>
+        </div>
+      </div>
+      <div style="margin-top:16px;height:4px;border-radius:2px;background:#2b2f34;overflow:hidden">
+        <div style="width:32%;height:100%;border-radius:2px;background:#f2f1ee;animation:crawl 1.9s ease-in-out infinite"></div>
+      </div>
+    </div>
+  </div>
+
+  <p style="margin:0;font:500 11.5px/1.55 'Plus Jakarta Sans',system-ui;color:#7e8085;text-align:center;text-wrap:pretty">Keep the app open. This usually takes a few seconds.</p>
+</div>
+</x-import>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:14px">
+  <div><div style="font:700 10px/1 ui-monospace,monospace;letter-spacing:0.18em;color:#a09d97">SYNC 02</div><div style="margin-top:6px;font:700 14px/1.3 'Plus Jakarta Sans',system-ui;color:#101010">Sync failed</div><div style="margin-top:3px;font:500 11.5px/1.4 'Plus Jakarta Sans',system-ui;color:#77746e">Blocking · way in stays open</div></div>
+<x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" dark="{{ true }}" hint-size="402px,874px">
+<div style="height:100%;box-sizing:border-box;padding:104px 26px 34px;display:flex;flex-direction:column;align-items:center;background:#14161a">
+  <div style="width:46px;height:46px;border-radius:16px;background:#f2f1ee;display:flex;align-items:center;justify-content:center;font:800 21px/1 'Plus Jakarta Sans',system-ui;color:#101215">&#960;</div>
+  <div style="margin-top:14px;font:700 9.5px/1 ui-monospace,monospace;letter-spacing:0.22em;color:#e2603c">PI.LOCAL · NO ANSWER</div>
+
+  <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;width:100%">
+    <div style="width:104px;height:104px;border-radius:34px;background:#331a12;display:flex;align-items:center;justify-content:center;animation:shake .5s ease-out">
+      <svg width="46" height="46" viewBox="0 0 48 48" fill="none" stroke="#e2603c" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 19a21 21 0 0130 0"></path>
+        <path d="M15 26a13 13 0 0118 0"></path>
+        <path d="M17 9L31 39"></path>
+        <circle cx="24" cy="34" r="1.6" fill="#e2603c" stroke="none"></circle>
+      </svg>
+    </div>
+
+    <div style="text-align:center">
+      <h1 style="margin:0;font:800 26px/1.2 'Plus Jakarta Sans',system-ui;letter-spacing:-0.035em;color:#f2f1ee">Couldn't reach your server</h1>
+      <p style="margin:11px 0 0;font:500 14px/1.55 'Plus Jakarta Sans',system-ui;color:#9b9ca1;text-wrap:pretty">Your vault still works. Everything you change now is saved on this phone and goes up to pi.local the next time it answers.</p>
+    </div>
+
+    <div style="width:100%;padding:16px 18px;box-sizing:border-box;border-radius:24px;background:#1c1f23;display:flex;flex-direction:column;gap:11px">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+        <span style="font:600 12.5px/1 'Plus Jakarta Sans',system-ui;color:#9b9ca1">Last synced</span>
+        <span style="font:600 12.5px/1 ui-monospace,monospace;color:#f2f1ee">Today, 08:14</span>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+        <span style="font:600 12.5px/1 'Plus Jakarta Sans',system-ui;color:#9b9ca1">Waiting to upload</span>
+        <span style="font:600 12.5px/1 ui-monospace,monospace;color:#f2f1ee">3 changes</span>
+      </div>
+    </div>
+  </div>
+
+  <div style="width:100%;display:flex;flex-direction:column;gap:10px">
+    <button type="button" style="height:60px;border-radius:30px;border:none;background:#f2f1ee;color:#101215;font:700 15.5px/1 'Plus Jakarta Sans',system-ui;cursor:pointer">Continue offline</button>
+    <button type="button" style="height:56px;border-radius:28px;border:1.5px solid #2b2f34;background:#14161a;font:700 14px/1 'Plus Jakarta Sans',system-ui;color:#f2f1ee;cursor:pointer">Try again</button>
+  </div>
+</div>
+</x-import>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:14px">
+  <div><div style="font:700 10px/1 ui-monospace,monospace;letter-spacing:0.18em;color:#a09d97">SYNC 03</div><div style="margin-top:6px;font:700 14px/1.3 'Plus Jakarta Sans',system-ui;color:#101010">Sync timed out</div><div style="margin-top:3px;font:500 11.5px/1.4 'Plus Jakarta Sans',system-ui;color:#77746e">Blocking · 60-second limit</div></div>
+<x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" dark="{{ true }}" hint-size="402px,874px">
+<div style="height:100%;box-sizing:border-box;padding:104px 26px 34px;display:flex;flex-direction:column;align-items:center;background:#14161a">
+  <div style="width:46px;height:46px;border-radius:16px;background:#f2f1ee;display:flex;align-items:center;justify-content:center;font:800 21px/1 'Plus Jakarta Sans',system-ui;color:#101215">&#960;</div>
+  <div style="margin-top:14px;font:700 9.5px/1 ui-monospace,monospace;letter-spacing:0.22em;color:#e2603c">PI.LOCAL · GAVE UP AT 60S</div>
+
+  <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;width:100%">
+    <div style="width:104px;height:104px;position:relative;display:flex;align-items:center;justify-content:center">
+      <svg width="104" height="104" viewBox="0 0 104 104" fill="none" style="position:absolute;inset:0">
+        <circle cx="52" cy="52" r="46" stroke="#331a12" stroke-width="5"></circle>
+        <circle cx="52" cy="52" r="46" stroke="#e2603c" stroke-width="5" stroke-linecap="round" stroke-dasharray="289" stroke-dashoffset="0" transform="rotate(-90 52 52)"></circle>
+      </svg>
+      <svg width="40" height="40" viewBox="0 0 44 44" fill="none" stroke="#e2603c" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="22" cy="22" r="15"></circle><path d="M22 13v9.6l6 3.6"></path></svg>
+    </div>
+
+    <div style="text-align:center">
+      <h1 style="margin:0;font:800 26px/1.2 'Plus Jakarta Sans',system-ui;letter-spacing:-0.035em;color:#f2f1ee">Your server is taking too long</h1>
+      <p style="margin:11px 0 0;font:500 14px/1.55 'Plus Jakarta Sans',system-ui;color:#9b9ca1;text-wrap:pretty">pi.local answered but never finished. We stopped after a minute rather than leave you waiting.</p>
+    </div>
+
+    <div style="width:100%;padding:16px 18px;box-sizing:border-box;border-radius:24px;background:#1c1f23;display:flex;flex-direction:column;gap:11px">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+        <span style="font:600 12.5px/1 'Plus Jakarta Sans',system-ui;color:#9b9ca1">Got through</span>
+        <span style="font:600 12.5px/1 ui-monospace,monospace;color:#f2f1ee">Passwords · 42</span>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+        <span style="font:600 12.5px/1 'Plus Jakarta Sans',system-ui;color:#9b9ca1">Stopped during</span>
+        <span style="font:600 12.5px/1 ui-monospace,monospace;color:#e2603c">Notes · 7 of 12</span>
+      </div>
+      <div style="padding-top:10px;border-top:1px solid #2b2f34;font:500 12px/1.5 'Plus Jakarta Sans',system-ui;color:#9b9ca1;text-wrap:pretty">Half a sync is safe. Nothing was overwritten, and the rest picks up where it stopped.</div>
+    </div>
+  </div>
+
+  <div style="width:100%;display:flex;flex-direction:column;gap:10px">
+    <button type="button" style="height:60px;border-radius:30px;border:none;background:#f2f1ee;color:#101215;font:700 15.5px/1 'Plus Jakarta Sans',system-ui;cursor:pointer">Continue offline</button>
+    <button type="button" style="height:56px;border-radius:28px;border:1.5px solid #2b2f34;background:#14161a;font:700 14px/1 'Plus Jakarta Sans',system-ui;color:#f2f1ee;cursor:pointer">Try again</button>
+  </div>
+</div>
+</x-import>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:14px">
+  <div><div style="font:700 10px/1 ui-monospace,monospace;letter-spacing:0.18em;color:#a09d97">SYNC 04</div><div style="margin-top:6px;font:700 14px/1.3 'Plus Jakarta Sans',system-ui;color:#101010">Offline, no sync</div><div style="margin-top:3px;font:500 11.5px/1.4 'Plus Jakarta Sans',system-ui;color:#77746e">Inline pill · not an error</div></div>
+<x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" dark="{{ true }}" hint-size="402px,874px">
+<div style="height:100%;box-sizing:border-box;padding:98px 0 0;display:flex;flex-direction:column;background:#0e0f11">
+  <div style="flex:1;overflow:hidden;display:flex;flex-direction:column">
+    <div style="padding:0 22px;display:flex;align-items:flex-end;justify-content:space-between;gap:14px">
+      <div>
+        <h1 style="margin:0;font:800 27px/1.1 'Plus Jakarta Sans',system-ui;letter-spacing:-0.04em;color:#f2f1ee">Passwords</h1>
+        <div style="margin-top:7px;font:500 12.5px/1 'Plus Jakarta Sans',system-ui;color:#9b9ca1">42 items</div>
+      </div>
+      <button type="button" aria-label="Search" style="width:40px;height:40px;border-radius:14px;border:1.5px solid #2b2f34;background:#14161a;display:flex;align-items:center;justify-content:center;cursor:pointer;flex:none">
+        <svg width="17" height="17" viewBox="0 0 18 18" fill="none" stroke="#f2f1ee" stroke-width="1.9" stroke-linecap="round"><circle cx="8" cy="8" r="5"></circle><path d="M11.8 11.8L15 15"></path></svg>
+      </button>
+    </div>
+
+    <div style="margin:16px 22px 0;display:flex">
+      <div style="display:flex;align-items:center;gap:9px;padding:9px 15px 9px 13px;border-radius:20px;background:#1c1f23;border:1.5px solid #2b2f34">
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="#9b9ca1" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="M2.6 6.2a9 9 0 0110.8 0"></path><path d="M4.8 9a5.6 5.6 0 016.4 0"></path><path d="M4.4 2.4l7.2 11.2"></path><circle cx="8" cy="11.8" r=".9" fill="#9b9ca1" stroke="none"></circle></svg>
+        <span style="font:600 12px/1 'Plus Jakarta Sans',system-ui;color:#9b9ca1">Offline · changes will sync later</span>
+      </div>
+    </div>
+
+    <div style="padding:14px 22px 0;display:flex;flex-direction:column;gap:9px">
+      <div style="display:flex;align-items:center;gap:13px;padding:13px 16px;border-radius:18px;background:#14161a;border:1.5px solid #2b2f34">
+        <span style="width:38px;height:38px;border-radius:12px;background:#1c1f23;display:flex;align-items:center;justify-content:center;font:800 15px/1 'Plus Jakarta Sans',system-ui;color:#f2f1ee;flex:none">C</span>
+        <span style="flex:1;min-width:0">
+          <span style="display:block;font:700 14.5px/1.2 'Plus Jakarta Sans',system-ui;color:#f2f1ee">Cloudflare</span>
+          <span style="display:block;margin-top:5px;font:500 11.5px/1 'Plus Jakarta Sans',system-ui;color:#9b9ca1">shivam@pidrive.app</span>
+        </span>
+        <span style="width:7px;height:7px;border-radius:50%;background:#7e8085;flex:none"></span>
+      </div>
+      <div style="display:flex;align-items:center;gap:13px;padding:13px 16px;border-radius:18px;background:#14161a;border:1.5px solid #2b2f34">
+        <span style="width:38px;height:38px;border-radius:12px;background:#1c1f23;display:flex;align-items:center;justify-content:center;font:800 15px/1 'Plus Jakarta Sans',system-ui;color:#f2f1ee;flex:none">G</span>
+        <span style="flex:1;min-width:0">
+          <span style="display:block;font:700 14.5px/1.2 'Plus Jakarta Sans',system-ui;color:#f2f1ee">GitHub</span>
+          <span style="display:block;margin-top:5px;font:500 11.5px/1 'Plus Jakarta Sans',system-ui;color:#9b9ca1">Edited offline</span>
+        </span>
+        <span style="width:7px;height:7px;border-radius:50%;background:#7e8085;flex:none"></span>
+      </div>
+      <div style="display:flex;align-items:center;gap:13px;padding:13px 16px;border-radius:18px;background:#14161a;border:1.5px solid #2b2f34">
+        <span style="width:38px;height:38px;border-radius:12px;background:#1c1f23;display:flex;align-items:center;justify-content:center;font:800 15px/1 'Plus Jakarta Sans',system-ui;color:#f2f1ee;flex:none">T</span>
+        <span style="flex:1;min-width:0">
+          <span style="display:block;font:700 14.5px/1.2 'Plus Jakarta Sans',system-ui;color:#f2f1ee">Tailscale</span>
+          <span style="display:block;margin-top:5px;font:500 11.5px/1 'Plus Jakarta Sans',system-ui;color:#9b9ca1">shivam@pidrive.app</span>
+        </span>
+      </div>
+      <div style="display:flex;align-items:center;gap:13px;padding:13px 16px;border-radius:18px;background:#14161a;border:1.5px solid #2b2f34">
+        <span style="width:38px;height:38px;border-radius:12px;background:#1c1f23;display:flex;align-items:center;justify-content:center;font:800 15px/1 'Plus Jakarta Sans',system-ui;color:#f2f1ee;flex:none">H</span>
+        <span style="flex:1;min-width:0">
+          <span style="display:block;font:700 14.5px/1.2 'Plus Jakarta Sans',system-ui;color:#f2f1ee">HDFC Bank</span>
+          <span style="display:block;margin-top:5px;font:500 11.5px/1 'Plus Jakarta Sans',system-ui;color:#9b9ca1">shivam.k</span>
+        </span>
+      </div>
+    </div>
+
+    <div style="margin:18px 22px 0;padding:15px 17px;border-radius:20px;border:1.5px dashed #2b2f34;display:flex;gap:12px;align-items:flex-start">
+      <span style="width:7px;height:7px;border-radius:50%;background:#7e8085;flex:none;margin-top:5px"></span>
+      <span style="font:500 12px/1.55 'Plus Jakarta Sans',system-ui;color:#9b9ca1;text-wrap:pretty">A dot marks the two items edited since the last sync. They go up on their own once pi.local is back.</span>
+    </div>
+  </div>
+
+  <div style="display:flex;align-items:center;justify-content:space-around;padding:10px 8px 30px;background:#14161a;border-top:1.5px solid #2b2f34">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:8px 16px;min-width:56px">
+      <svg width="21" height="21" viewBox="0 0 22 22" fill="none" stroke="#7e8085" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l8-6 8 6v9a1.5 1.5 0 01-1.5 1.5h-13A1.5 1.5 0 013 18z"></path></svg>
+      <span style="font:600 10px/1 'Plus Jakarta Sans',system-ui;color:#7e8085">Home</span>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:8px 16px;min-width:56px">
+      <svg width="21" height="21" viewBox="0 0 22 22" fill="none" stroke="#f2f1ee" stroke-width="1.9" stroke-linecap="round"><circle cx="8" cy="11" r="3.4"></circle><path d="M11.4 11H19M16 11v3"></path></svg>
+      <span style="font:700 10px/1 'Plus Jakarta Sans',system-ui;color:#f2f1ee">Passwords</span>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:8px 16px;min-width:56px">
+      <svg width="21" height="21" viewBox="0 0 22 22" fill="none" stroke="#7e8085" stroke-width="1.9" stroke-linecap="round"><path d="M5 3h9l4 4v12H5z"></path><path d="M8 9h6M8 13h6"></path></svg>
+      <span style="font:600 10px/1 'Plus Jakarta Sans',system-ui;color:#7e8085">Notes</span>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:8px 16px;min-width:56px;opacity:.38">
+      <svg width="21" height="21" viewBox="0 0 22 22" fill="none" stroke="#7e8085" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6.5A1.5 1.5 0 014.5 5h4L10 7h7.5A1.5 1.5 0 0119 8.5v8A1.5 1.5 0 0117.5 18h-13A1.5 1.5 0 013 16.5z"></path></svg>
+      <span style="font:600 10px/1 'Plus Jakarta Sans',system-ui;color:#7e8085">Media</span>
+    </div>
+  </div>
+</div>
+</x-import>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:14px">
+  <div><div style="font:700 10px/1 ui-monospace,monospace;letter-spacing:0.18em;color:#a09d97">SYNC 05</div><div style="margin-top:6px;font:700 14px/1.3 'Plus Jakarta Sans',system-ui;color:#101010">Settings › Sync</div><div style="margin-top:3px;font:500 11.5px/1.4 'Plus Jakarta Sans',system-ui;color:#77746e">Sync now opens screen 1</div></div>
+<x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" dark="{{ true }}" hint-size="402px,874px">
+<div style="height:100%;box-sizing:border-box;padding:98px 0 0;display:flex;flex-direction:column;background:#0e0f11">
+  <div style="padding:0 18px;display:flex;align-items:center;gap:12px">
+    <button type="button" aria-label="Back to settings" style="width:42px;height:42px;border-radius:14px;border:none;background:#1c1f23;display:flex;align-items:center;justify-content:center;cursor:pointer;flex:none">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#f2f1ee" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 3.5L5.5 9l5.5 5.5"></path></svg>
+    </button>
+    <span style="font:700 15px/1 'Plus Jakarta Sans',system-ui;letter-spacing:-0.02em;color:#f2f1ee">Settings</span>
+  </div>
+
+  <div style="padding:20px 22px 0">
+    <h1 style="margin:0;font:800 27px/1.1 'Plus Jakarta Sans',system-ui;letter-spacing:-0.04em;color:#f2f1ee">Sync</h1>
+
+    <div style="margin-top:20px;padding:22px;border-radius:26px;background:#14161a;border:1.5px solid #2b2f34">
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="width:9px;height:9px;border-radius:50%;background:#35c39a;flex:none"></span>
+        <span style="font:700 13.5px/1 'Plus Jakarta Sans',system-ui;color:#f2f1ee">Up to date</span>
+      </div>
+      <div style="margin-top:14px;font:800 30px/1 'Plus Jakarta Sans',system-ui;letter-spacing:-0.04em;color:#f2f1ee">4 min ago</div>
+      <div style="margin-top:8px;font:500 12.5px/1.5 'Plus Jakarta Sans',system-ui;color:#9b9ca1">Today at 09:52 · pi.local</div>
+      <button type="button" style="width:100%;height:60px;margin-top:20px;border-radius:30px;border:none;background:#f2f1ee;color:#101215;font:700 15.5px/1 'Plus Jakarta Sans',system-ui;cursor:pointer">Sync now</button>
+    </div>
+
+    <div style="margin-top:22px;font:700 9.5px/1 ui-monospace,monospace;letter-spacing:0.18em;color:#7e8085">WHAT SYNCED</div>
+    <div style="margin-top:12px;border-radius:24px;background:#14161a;border:1.5px solid #2b2f34;overflow:hidden">
+      <div style="display:flex;align-items:center;gap:12px;padding:16px 18px;border-bottom:1px solid #2b2f34">
+        <span style="flex:1;font:600 14px/1 'Plus Jakarta Sans',system-ui;color:#f2f1ee">Passwords</span>
+        <span style="font:600 12.5px/1 ui-monospace,monospace;color:#9b9ca1">42 items</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;padding:16px 18px;border-bottom:1px solid #2b2f34">
+        <span style="flex:1;font:600 14px/1 'Plus Jakarta Sans',system-ui;color:#f2f1ee">Notes</span>
+        <span style="font:600 12.5px/1 ui-monospace,monospace;color:#9b9ca1">12 notes</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;padding:16px 18px">
+        <span style="flex:1;font:600 14px/1 'Plus Jakarta Sans',system-ui;color:#f2f1ee">Media index</span>
+        <span style="font:600 12.5px/1 ui-monospace,monospace;color:#9b9ca1">8 files</span>
+      </div>
+    </div>
+
+    <div style="margin-top:22px;font:700 9.5px/1 ui-monospace,monospace;letter-spacing:0.18em;color:#7e8085">WHEN IT RUNS</div>
+    <div style="margin-top:12px;border-radius:24px;background:#14161a;border:1.5px solid #2b2f34;overflow:hidden">
+      <div style="display:flex;align-items:center;gap:14px;padding:17px 18px;border-bottom:1px solid #2b2f34">
+        <span style="flex:1">
+          <span style="display:block;font:600 14px/1.2 'Plus Jakarta Sans',system-ui;color:#f2f1ee">On app open</span>
+          <span style="display:block;margin-top:5px;font:500 11.5px/1.3 'Plus Jakarta Sans',system-ui;color:#9b9ca1">Skipped when you are offline</span>
+        </span>
+        <span style="width:48px;height:29px;border-radius:15px;background:#f2f1ee;padding:3px;box-sizing:border-box;display:flex;justify-content:flex-end;flex:none">
+          <span style="width:23px;height:23px;border-radius:50%;background:#14161a"></span>
+        </span>
+      </div>
+      <div style="display:flex;align-items:center;gap:14px;padding:17px 18px">
+        <span style="flex:1">
+          <span style="display:block;font:600 14px/1.2 'Plus Jakarta Sans',system-ui;color:#f2f1ee">Only on Wi-Fi</span>
+          <span style="display:block;margin-top:5px;font:500 11.5px/1.3 'Plus Jakarta Sans',system-ui;color:#9b9ca1">pi.local is on your home network anyway</span>
+        </span>
+        <span style="width:48px;height:29px;border-radius:15px;background:#2b2f34;padding:3px;box-sizing:border-box;display:flex;justify-content:flex-start;flex:none">
+          <span style="width:23px;height:23px;border-radius:50%;background:#14161a"></span>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+</x-import>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:14px">
+  <div><div style="font:700 10px/1 ui-monospace,monospace;letter-spacing:0.18em;color:#a09d97">SYNC 06</div><div style="margin-top:6px;font:700 14px/1.3 'Plus Jakarta Sans',system-ui;color:#101010">Sync complete</div><div style="margin-top:3px;font:500 11.5px/1.4 'Plus Jakarta Sans',system-ui;color:#77746e">Brief · then the vault</div></div>
+<x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" dark="{{ true }}" hint-size="402px,874px">
+<div style="height:100%;box-sizing:border-box;padding:104px 30px 40px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;background:#0e0f11">
+  <div style="width:112px;height:112px;border-radius:38px;background:rgba(53,195,154,0.14);display:flex;align-items:center;justify-content:center;animation:rise .3s ease-out">
+    <svg width="52" height="52" viewBox="0 0 52 52" fill="none" stroke="#35c39a" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M13 27.5l8.5 8.5L39 18"></path></svg>
+  </div>
+  <div style="text-align:center">
+    <div style="font:800 26px/1.2 'Plus Jakarta Sans',system-ui;letter-spacing:-0.035em;color:#fdfdfd">Vault up to date</div>
+    <p style="margin:11px 0 0;font:500 14px/1.55 'Plus Jakarta Sans',system-ui;color:rgba(255,255,255,0.58);text-wrap:pretty">40 items in, 3 changes up. Opening your vault.</p>
+  </div>
+  <div style="display:flex;align-items:center;gap:9px;padding:11px 16px;border-radius:20px;background:rgba(255,255,255,0.07)">
+    <span style="width:7px;height:7px;border-radius:50%;background:#35c39a;flex:none"></span>
+    <span style="font:600 11.5px/1 ui-monospace,monospace;letter-spacing:0.08em;color:rgba(255,255,255,0.72)">PI.LOCAL · 09:56</span>
+  </div>
+</div>
+</x-import>
+</div>
+
+<div style="width:280px;padding-top:34px;display:flex;flex-direction:column;gap:22px">
+  <div>
+    <div style="font:700 9.5px/1 ui-monospace,monospace;letter-spacing:0.2em;color:#a09d97;margin-bottom:12px">SYNC RULES</div>
+    <div style="font:500 12px/1.75 'Plus Jakarta Sans',system-ui;color:#5f5c57">
+      Sync never blocks entry to the vault<br />Both failures offer Continue offline first<br />Offline is a pill, never a screen<br />Progress is always named, never a bare spinner<br />A stopped sync overwrites nothing<br />Sixty seconds, then it gives up
+    </div>
+  </div>
+  <div style="border-top:1px solid rgba(16,16,16,0.12);padding-top:16px;font:500 12px/1.7 'Plus Jakarta Sans',system-ui;color:#5f5c57">
+    Screen 1 shows three named stages with counts, so a slow sync reads as working rather than stuck. Screen 6 borrows the dark treatment from the existing signed-in success state and leaves on its own.
+  </div>
+  <div style="border-top:1px solid rgba(16,16,16,0.12);padding-top:16px;font:500 12px/1.7 'Plus Jakarta Sans',system-ui;color:#5f5c57">
+    Media stays server-only, so the tab greys out while offline. Passwords and notes carry a dot when they hold unsynced edits.
+  </div>
+</div>
+
+</div>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:1400}}"></script>
+</body>
+</html>
