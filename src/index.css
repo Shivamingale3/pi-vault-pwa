@@ -1,1 +1,216 @@
+/* ============================================================================
+   PiDRIVE — index.css
+   Destination: src/index.css   (currently parked in docs/)
+   ========================================================================= */
+
 @import "tailwindcss";
+@import "./styles/tokens.css";
+
+/* ----------------------------------------------------------------------------
+   Dark variant
+
+   Tailwind v4 defaults `dark:` to prefers-color-scheme. The app offers
+   light / dark / system in settings, so the class is the single trigger:
+   "system" is resolved in JS and applies (or removes) .dark on <html>.
+   One mechanism, not two competing ones.
+   ------------------------------------------------------------------------- */
+@custom-variant dark (&:is(.dark *));
+
+/* ----------------------------------------------------------------------------
+   Fonts — self-hosted.
+
+   Never a CDN. Section 22 forbids third-party origins on a page holding
+   decrypted vault data, and a font request also leaks usage to a third party.
+   Place the woff2 files in public/fonts/.
+   ------------------------------------------------------------------------- */
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("/fonts/PlusJakartaSans-Variable.woff2") format("woff2-variations");
+  font-weight: 400 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ----------------------------------------------------------------------------
+   Theme mapping
+
+   `inline` is required. Without it Tailwind copies the variable's value at
+   build time and the utilities stop following the active theme.
+   ------------------------------------------------------------------------- */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-subtle-foreground: var(--subtle-foreground);
+  --color-icon-muted: var(--icon-muted);
+
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-destructive-muted: var(--destructive-muted);
+  --color-destructive-muted-foreground: var(--destructive-muted-foreground);
+
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-success-muted: var(--success-muted);
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-input-background: var(--input-background);
+  --color-ring: var(--ring);
+
+  --color-inverse: var(--inverse);
+  --color-inverse-foreground: var(--inverse-foreground);
+  --color-inverse-muted-foreground: var(--inverse-muted-foreground);
+  --color-inverse-chip: var(--inverse-chip);
+  --color-inverse-chip-foreground: var(--inverse-chip-foreground);
+
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius);
+  --radius-lg: var(--radius-card);
+  --radius-full: var(--radius-pill);
+
+  --spacing-input: var(--height-input);
+  --spacing-button: var(--height-button);
+
+  --shadow-primary: var(--shadow-primary);
+
+  --tracking-heading: var(--tracking-heading);
+  --tracking-label: var(--tracking-label);
+
+  /* Animations — keyframes are defined below, outside @theme. */
+  --animate-rise: rise 0.3s ease-out;
+  --animate-spin-slow: spin 1.15s linear infinite;
+  --animate-shake: shake 0.5s ease-out;
+  --animate-crawl: crawl 1.9s ease-in-out infinite;
+  --animate-breathe: breathe 1.4s ease-in-out infinite;
+}
+
+/* ----------------------------------------------------------------------------
+   Keyframes — lifted verbatim from the design exports.
+
+   rise     entrance for cards, list items, success marks
+   spin     sync ring
+   shake    PIN error, sync failure icon
+   crawl    indeterminate progress bar (sync screen)
+   breathe  the in-progress row in the sync checklist
+   ------------------------------------------------------------------------- */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%      { transform: translateX(-6px); }
+  40%      { transform: translateX(5px); }
+  60%      { transform: translateX(-3px); }
+  80%      { transform: translateX(2px); }
+}
+
+@keyframes crawl {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(320%); }
+}
+
+@keyframes breathe {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.5; }
+}
+
+/* ----------------------------------------------------------------------------
+   Base
+   ------------------------------------------------------------------------- */
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  html {
+    /* Stops iOS Safari inflating text in landscape. */
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    /* Explicit background so the artifact/PWA viewport is never transparent. */
+  }
+
+  h1, h2, h3 {
+    letter-spacing: var(--tracking-heading);
+  }
+
+  /* From the design exports, unchanged. */
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 3px;
+    border-radius: 8px;
+  }
+
+  /* Vault UI should never offer to save its own fields to a browser manager. */
+  input:-webkit-autofill {
+    -webkit-text-fill-color: var(--foreground);
+    transition: background-color 9999s;
+  }
+}
+
+/* ----------------------------------------------------------------------------
+   Reduced motion
+
+   Non-negotiable: present in the source designs and an accessibility
+   requirement. Applies to the whole app, including Motion-driven animation
+   (Motion respects prefers-reduced-motion separately — configure it too).
+   ------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ----------------------------------------------------------------------------
+   Usage reference
+
+   bg-background text-foreground        page
+   bg-card text-card-foreground         panels, cards, list rows
+   bg-primary text-primary-foreground   pilled action button
+   text-muted-foreground                body copy
+   text-subtle-foreground               mono labels, placeholders
+   bg-destructive-muted                 error wells and banners
+   text-destructive                     error accent
+   bg-success-muted text-success        success marks
+   bg-inverse text-inverse-foreground   always-dark panels (success screens)
+
+   h-input  rounded-md  bg-input-background  border-[1.5px] border-input
+   h-button rounded-full bg-primary shadow-primary
+   font-mono tracking-label                    PI.LOCAL style labels
+   ------------------------------------------------------------------------- */
