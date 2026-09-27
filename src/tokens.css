@@ -1,35 +1,32 @@
 /* ============================================================================
-   PiDRIVE — Design Tokens
-   Destination: src/styles/tokens.css   (currently parked in docs/)
-   Source of truth: docs/designs/*.dc.html
-   ----------------------------------------------------------------------------
-   Two layers, deliberately:
+   PiVAULT — Design Tokens
+   Extracted from docs/designs/*.dc.html — values are lifted, not invented.
 
-   1. Plain CSS variables on :root and .dark — these SWAP per theme.
-   2. @theme inline in index.css — maps them to Tailwind utilities.
+   Two layers, deliberately:
+     1. Plain CSS variables on :root and .dark — these SWAP per theme.
+     2. @theme inline in index.css — maps them to Tailwind utilities.
 
    Tailwind v4's @theme compiles values into fixed utility classes, so a value
    placed there cannot change per theme. `inline` makes Tailwind emit
-   var(--token) instead of the literal, which is what lets a single utility
-   like `bg-background` follow the active theme.
+   var(--token), which is what lets `bg-background` follow the active theme.
 
-   Naming follows shadcn's *-foreground convention so its components work
-   against these tokens without remapping.
+   Names follow shadcn's *-foreground convention so its components work here
+   without remapping.
    ========================================================================= */
 
 :root {
   /* ---- Surfaces ---------------------------------------------------------- */
-  --background: #ffffff;
+  --background: #ffffff;            /* list screens, auth screens */
+  --background-warm: #fbfaf8;       /* dashboard — very slightly warm */
   --foreground: #101010;
 
-  --card: #f5f4f1;
+  --card: #ffffff;                  /* bordered cards sit ON the background */
   --card-foreground: #101010;
 
   --popover: #ffffff;
   --popover-foreground: #101010;
 
   /* ---- Actions ----------------------------------------------------------- */
-  /* Primary is the pilled ink button: dark fill, near-white label. */
   --primary: #101010;
   --primary-foreground: #fefefe;
 
@@ -40,15 +37,15 @@
   --accent-foreground: #101010;
 
   /* ---- Text -------------------------------------------------------------- */
-  --muted: #f5f4f1;
-  --muted-foreground: #77746e;      /* body copy, secondary text */
-  --subtle-foreground: #a09d97;     /* mono labels, placeholders, tracked caps */
-  --icon-muted: #8d8a84;            /* icons inside inputs */
+  --muted: #f5f4f1;                 /* filled wells: filter bars, glyph tiles */
+  --muted-foreground: #77746e;      /* body copy, secondary lines */
+  --subtle-foreground: #a09d97;     /* mono caps labels, inactive nav, icons */
+  --placeholder: #a3a19c;           /* input::placeholder specifically */
 
   /* ---- Status ------------------------------------------------------------ */
-  --destructive: #c23c1a;                  /* rust error accent */
+  --destructive: #c23c1a;
   --destructive-foreground: #fefefe;
-  --destructive-muted: #fdeeea;            /* error banner / icon well */
+  --destructive-muted: #fdeeea;
   --destructive-muted-foreground: #8f2b12;
 
   --success: #35c39a;
@@ -58,45 +55,72 @@
   /* ---- Lines and focus --------------------------------------------------- */
   --border: #eceae5;
   --input: #eceae5;                 /* input BORDER (shadcn semantics) */
-  --input-background: #f5f4f1;      /* input FILL — PiDRIVE-specific */
+  --input-background: #f5f4f1;      /* input FILL */
   --ring: #101010;
 
   /* ---- Inverse ----------------------------------------------------------- */
-  /* Full-bleed dark panels that stay dark in BOTH themes — success overlays,
-     the signed-in screen, sync complete. Not a theme surface. */
+  /* Panels that stay dark in BOTH themes: toasts, success overlays, the
+     signed-in and sync-complete screens. Not a theme surface. */
   --inverse: #0e0f11;
   --inverse-foreground: #fdfdfd;
   --inverse-muted-foreground: rgba(255, 255, 255, 0.58);
   --inverse-chip: rgba(255, 255, 255, 0.07);
   --inverse-chip-foreground: rgba(255, 255, 255, 0.72);
+  --inverse-destructive: #ff9d80;   /* destructive action on a dark panel */
 
   /* ---- Radii ------------------------------------------------------------- */
-  --radius-sm: 12px;    /* small controls, icon buttons */
-  --radius: 18px;       /* inputs — also shadcn's base for its derivations */
-  --radius-card: 24px;  /* cards, panels, sheets */
-  --radius-pill: 30px;  /* primary buttons (fully pilled at 60px tall) */
+  /* The designs use many specific radii rather than a scale. Listed by role. */
+  --radius-tile-sm: 11px;   /* 34px glyph tile */
+  --radius-tile: 12px;      /* 36px glyph tile */
+  --radius-tile-lg: 14px;   /* 42px glyph tile, 44px icon button */
+  --radius-avatar: 15px;    /* 42px account avatar */
+  --radius-row: 18px;       /* list row hit area */
+  --radius-input: 18px;     /* auth inputs */
+  --radius-chip: 19px;      /* 38px pill chip (Sort) */
+  --radius-card: 20px;      /* dashboard cards, toast */
+  --radius-field: 24px;     /* 48px filter field */
+  --radius-panel: 26px;     /* sheets, large panels */
+  --radius-search: 27px;    /* 54px search bar */
+  --radius-pill: 30px;      /* 60px primary button */
 
   /* ---- Control sizes ----------------------------------------------------- */
+  --size-tile-sm: 34px;
+  --size-tile: 36px;
+  --size-tile-lg: 42px;
+  --size-icon-button: 44px;     /* also the 44px minimum touch target */
+  --height-chip: 38px;
+  --height-field: 48px;
+  --height-search: 54px;
   --height-input: 58px;
   --height-button: 60px;
-  --border-width-input: 1.5px;
+  --border-width: 1.5px;        /* every border in the designs */
+
+  /* ---- Layout ------------------------------------------------------------ */
+  --gutter: 22px;               /* horizontal screen padding */
+  --header-offset: 98px;        /* top padding under the status bar */
 
   /* ---- Elevation --------------------------------------------------------- */
+  --shadow-search: 0 4px 14px rgba(16, 16, 16, 0.04);
   --shadow-primary: 0 10px 26px rgba(16, 16, 16, 0.18);
+  --shadow-toast: 0 14px 34px rgba(16, 16, 16, 0.28);
 
   /* ---- Type -------------------------------------------------------------- */
   --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
 
-  /* Heading tracking. The designs run -0.03em at 20px and -0.035em at 26px;
-     -0.04em appears on the largest numerals. */
-  --tracking-heading: -0.035em;
-  --tracking-label: 0.2em;          /* mono caps labels, e.g. PI.LOCAL */
+  /* Tracking tightens as size grows — taken from the designs, not guessed. */
+  --tracking-display: -0.04em;   /* 27px page titles */
+  --tracking-title: -0.03em;     /* 17–20px headings */
+  --tracking-heading: -0.02em;   /* 14–15px card titles */
+  --tracking-tight: -0.01em;     /* 15px row titles */
+  --tracking-label: 0.2em;       /* 9.5–10px mono caps labels */
+  --tracking-label-tight: 0.16em;
 }
 
 .dark {
   /* ---- Surfaces ---------------------------------------------------------- */
   --background: #101215;
+  --background-warm: #101215;       /* no warm variant on dark */
   --foreground: #f2f1ee;
 
   --card: #14161a;
@@ -106,7 +130,7 @@
   --popover-foreground: #f2f1ee;
 
   /* ---- Actions ----------------------------------------------------------- */
-  /* Inverted: on dark, the primary button is a light pill with dark text. */
+  /* Inverted: on dark the primary button is a light pill with dark text. */
   --primary: #f2f1ee;
   --primary-foreground: #101215;
 
@@ -120,13 +144,13 @@
   --muted: #14161a;
   --muted-foreground: #9b9ca1;
   --subtle-foreground: #7e8085;
-  --icon-muted: #7e8085;
+  --placeholder: #7e8085;
 
   /* ---- Status ------------------------------------------------------------ */
-  --destructive: #c23c1a;
-  --destructive-foreground: #fdfdfd;
+  --destructive: #ff9d80;           /* the designs' own dark destructive */
+  --destructive-foreground: #101215;
   --destructive-muted: rgba(194, 60, 26, 0.14);
-  --destructive-muted-foreground: #e8846a;   /* derived: #8f2b12 fails contrast on dark */
+  --destructive-muted-foreground: #ff9d80;
 
   --success: #35c39a;
   --success-foreground: #0e0f11;
@@ -138,16 +162,14 @@
   --input-background: #14161a;
   --ring: #f2f1ee;
 
-  /* --inverse-* deliberately unchanged — those panels are dark in both themes. */
+  /* --inverse-* deliberately unchanged — dark in both themes. */
 }
 
 /* ============================================================================
-   Notes on tokens NOT defined here
+   Deliberately absent
    ----------------------------------------------------------------------------
-   --canvas (#e7e5e0) is the design-document background in the .dc.html
-   exports. It is not an app surface and is intentionally absent.
-
-   #101215 and #0e0f11 in the designs differ by roughly 1% and are not
-   distinguishable side by side. Collapsed: #101215 is the dark theme
-   background, #0e0f11 is --inverse for always-dark panels.
+   #e7e5e0  the canvas behind the device frames in the design documents.
+            Not an app surface.
+   #5f5c57  body copy in the design documents' own explanatory text.
+            Not used inside any screen.
    ========================================================================= */

@@ -1,6 +1,5 @@
 /* ============================================================================
-   PiDRIVE — index.css
-   Destination: src/index.css   (currently parked in docs/)
+   PiVAULT — index.css
    ========================================================================= */
 
 @import "tailwindcss";
@@ -9,19 +8,21 @@
 /* ----------------------------------------------------------------------------
    Dark variant
 
-   Tailwind v4 defaults `dark:` to prefers-color-scheme. The app offers
-   light / dark / system in settings, so the class is the single trigger:
-   "system" is resolved in JS and applies (or removes) .dark on <html>.
-   One mechanism, not two competing ones.
+   Tailwind v4 defaults `dark:` to prefers-color-scheme. Settings offers
+   light / dark / system, so the class is the single trigger: "system" is
+   resolved in JS and adds or removes .dark on <html>. One mechanism, not two
+   competing ones.
    ------------------------------------------------------------------------- */
 @custom-variant dark (&:is(.dark *));
 
 /* ----------------------------------------------------------------------------
    Fonts — self-hosted.
 
-   Never a CDN. Section 22 forbids third-party origins on a page holding
-   decrypted vault data, and a font request also leaks usage to a third party.
-   Place the woff2 files in public/fonts/.
+   The design exports link Google Fonts; that is fine for a design document and
+   wrong for the app. A third-party origin on a page holding decrypted vault
+   data is forbidden, and a font request leaks usage besides.
+
+   Put the woff2 in public/fonts/.
    ------------------------------------------------------------------------- */
 @font-face {
   font-family: "Plus Jakarta Sans";
@@ -34,11 +35,13 @@
 /* ----------------------------------------------------------------------------
    Theme mapping
 
-   `inline` is required. Without it Tailwind copies the variable's value at
+   `inline` is required. Without it Tailwind copies each variable's value at
    build time and the utilities stop following the active theme.
    ------------------------------------------------------------------------- */
 @theme inline {
+  /* Colour */
   --color-background: var(--background);
+  --color-background-warm: var(--background-warm);
   --color-foreground: var(--foreground);
 
   --color-card: var(--card);
@@ -59,7 +62,6 @@
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-subtle-foreground: var(--subtle-foreground);
-  --color-icon-muted: var(--icon-muted);
 
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
@@ -80,93 +82,94 @@
   --color-inverse-muted-foreground: var(--inverse-muted-foreground);
   --color-inverse-chip: var(--inverse-chip);
   --color-inverse-chip-foreground: var(--inverse-chip-foreground);
+  --color-inverse-destructive: var(--inverse-destructive);
 
+  /* Type */
   --font-sans: var(--font-sans);
   --font-mono: var(--font-mono);
 
-  --radius-sm: var(--radius-sm);
-  --radius-md: var(--radius);
-  --radius-lg: var(--radius-card);
-  --radius-full: var(--radius-pill);
+  --tracking-display: var(--tracking-display);
+  --tracking-title: var(--tracking-title);
+  --tracking-heading: var(--tracking-heading);
+  --tracking-tight: var(--tracking-tight);
+  --tracking-label: var(--tracking-label);
+  --tracking-label-tight: var(--tracking-label-tight);
 
+  /* Radii — role-named, matching the designs rather than a generic scale */
+  --radius-tile-sm: var(--radius-tile-sm);
+  --radius-tile: var(--radius-tile);
+  --radius-tile-lg: var(--radius-tile-lg);
+  --radius-avatar: var(--radius-avatar);
+  --radius-row: var(--radius-row);
+  --radius-input: var(--radius-input);
+  --radius-chip: var(--radius-chip);
+  --radius-card: var(--radius-card);
+  --radius-field: var(--radius-field);
+  --radius-panel: var(--radius-panel);
+  --radius-search: var(--radius-search);
+  --radius-pill: var(--radius-pill);
+
+  /* Sizes — usable as h-*, w-*, size-*, p-*, gap-* */
+  --spacing-tile-sm: var(--size-tile-sm);
+  --spacing-tile: var(--size-tile);
+  --spacing-tile-lg: var(--size-tile-lg);
+  --spacing-icon-button: var(--size-icon-button);
+  --spacing-chip: var(--height-chip);
+  --spacing-field: var(--height-field);
+  --spacing-search: var(--height-search);
   --spacing-input: var(--height-input);
   --spacing-button: var(--height-button);
+  --spacing-gutter: var(--gutter);
+  --spacing-header-offset: var(--header-offset);
 
+  /* Elevation */
+  --shadow-search: var(--shadow-search);
   --shadow-primary: var(--shadow-primary);
+  --shadow-toast: var(--shadow-toast);
 
-  --tracking-heading: var(--tracking-heading);
-  --tracking-label: var(--tracking-label);
-
-  /* Animations — keyframes are defined below, outside @theme. */
+  /* Animation */
   --animate-rise: rise 0.3s ease-out;
-  --animate-spin-slow: spin 1.15s linear infinite;
+  --animate-fade: fade 0.2s ease-out;
   --animate-shake: shake 0.5s ease-out;
   --animate-crawl: crawl 1.9s ease-in-out infinite;
   --animate-breathe: breathe 1.4s ease-in-out infinite;
 }
 
 /* ----------------------------------------------------------------------------
-   Keyframes — lifted verbatim from the design exports.
+   Keyframes — verbatim from the design exports.
 
-   rise     entrance for cards, list items, success marks
-   spin     sync ring
-   shake    PIN error, sync failure icon
-   crawl    indeterminate progress bar (sync screen)
+   rise     entrance for cards, rows, toasts, success marks
+   fade     plain opacity entrance
+   shake    PIN error, sync failure
+   crawl    indeterminate progress bar on the sync screen
    breathe  the in-progress row in the sync checklist
    ------------------------------------------------------------------------- */
 @keyframes rise {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: none; }
 }
 
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
+@keyframes fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
 @keyframes shake {
-  0%,
-  100% {
-    transform: translateX(0);
-  }
-  20% {
-    transform: translateX(-6px);
-  }
-  40% {
-    transform: translateX(5px);
-  }
-  60% {
-    transform: translateX(-3px);
-  }
-  80% {
-    transform: translateX(2px);
-  }
+  0%, 100% { transform: translateX(0); }
+  20%      { transform: translateX(-6px); }
+  40%      { transform: translateX(5px); }
+  60%      { transform: translateX(-3px); }
+  80%      { transform: translateX(2px); }
 }
 
 @keyframes crawl {
-  0% {
-    transform: translateX(-100%);
-  }
-  100% {
-    transform: translateX(320%);
-  }
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(320%); }
 }
 
 @keyframes breathe {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.5;
-  }
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.5; }
 }
 
 /* ----------------------------------------------------------------------------
@@ -178,31 +181,32 @@
   }
 
   html {
-    /* Stops iOS Safari inflating text in landscape. */
-    -webkit-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;   /* stops iOS inflating text in landscape */
   }
 
   body {
+    margin: 0;
     background-color: var(--background);
     color: var(--foreground);
     font-family: var(--font-sans);
-    /* Explicit background so the artifact/PWA viewport is never transparent. */
+    text-wrap: pretty;
   }
 
-  h1,
-  h2,
-  h3 {
-    letter-spacing: var(--tracking-heading);
+  /* From the designs, unchanged. */
+  input::placeholder {
+    color: var(--placeholder);
+    opacity: 1;                       /* Firefox dims placeholders by default */
   }
 
-  /* From the design exports, unchanged. */
-  :focus-visible {
+  button:focus-visible,
+  a:focus-visible,
+  input:focus-visible {
     outline: 2px solid var(--ring);
     outline-offset: 3px;
     border-radius: 8px;
   }
 
-  /* Vault UI should never offer to save its own fields to a browser manager. */
+  /* The vault must never offer its own fields to a browser password manager. */
   input:-webkit-autofill {
     -webkit-text-fill-color: var(--foreground);
     transition: background-color 9999s;
@@ -212,9 +216,8 @@
 /* ----------------------------------------------------------------------------
    Reduced motion
 
-   Non-negotiable: present in the source designs and an accessibility
-   requirement. Applies to the whole app, including Motion-driven animation
-   (Motion respects prefers-reduced-motion separately — configure it too).
+   Present in the source designs and an accessibility requirement, not a
+   nicety. Motion (the library) respects this separately — configure it too.
    ------------------------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -228,19 +231,25 @@
 }
 
 /* ----------------------------------------------------------------------------
-   Usage reference
+   Usage reference — how the designs map to utilities
 
-   bg-background text-foreground        page
-   bg-card text-card-foreground         panels, cards, list rows
-   bg-primary text-primary-foreground   pilled action button
-   text-muted-foreground                body copy
-   text-subtle-foreground               mono labels, placeholders
-   bg-destructive-muted                 error wells and banners
-   text-destructive                     error accent
-   bg-success-muted text-success        success marks
-   bg-inverse text-inverse-foreground   always-dark panels (success screens)
+   Screen        bg-background (bg-background-warm on the dashboard)
+                 px-gutter pt-header-offset
+   Page title    text-[27px] font-extrabold tracking-display
+   Mono label    font-mono text-[9.5px] font-bold tracking-label
+                 text-subtle-foreground uppercase
+   Row title     text-[15px] font-bold tracking-tight
+   Row meta      text-[12.5px] font-medium text-muted-foreground
 
-   h-input  rounded-md  bg-input-background  border-[1.5px] border-input
-   h-button rounded-full bg-primary shadow-primary
-   font-mono tracking-label                    PI.LOCAL style labels
+   Search bar    h-search rounded-search bg-card border-[1.5px] border-border
+                 shadow-search
+   Filter field  h-field rounded-field bg-muted           (no border)
+   Card          rounded-card border-[1.5px] border-border bg-card
+   Glyph tile    size-tile-lg rounded-tile-lg bg-muted
+   Icon button   size-icon-button rounded-tile-lg
+   Chip          h-chip rounded-chip border-[1.5px] border-border
+   Primary       h-button rounded-pill bg-primary text-primary-foreground
+                 shadow-primary
+   Toast         rounded-card bg-inverse text-inverse-foreground shadow-toast
+                 animate-rise
    ------------------------------------------------------------------------- */

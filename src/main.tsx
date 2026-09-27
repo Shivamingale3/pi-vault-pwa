@@ -1,15 +1,20 @@
-import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { RouterProvider } from "@tanstack/react-router";
 
 import "./index.css";
-import { router } from "@/router";
 import { ThemeProvider } from "@/providers/theme.provider";
+import { PwaGate } from "@/providers/pwa-gate";
+import { ErrorBoundary } from "@/providers/error-boundry";
+import { TrustProvider } from "@/providers/trust.provider";
+import { AppRouterProvider } from "@/providers/router.provider";
 
 createRoot(document.getElementById("root")!).render(
-  <StrictMode>
+  <ErrorBoundary>
     <ThemeProvider>
-      <RouterProvider router={router} />
+      <PwaGate>
+        <TrustProvider>
+          <AppRouterProvider />
+        </TrustProvider>
+      </PwaGate>
     </ThemeProvider>
-  </StrictMode>,
+  </ErrorBoundary>,
 );
