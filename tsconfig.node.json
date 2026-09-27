@@ -23,7 +23,8 @@
     /* Path aliases */
     "paths": {
       "@/*": ["./src/*"]
-    }
+    },
+    "strictNullChecks": true
   },
   "include": ["vite.config.ts"]
 }
