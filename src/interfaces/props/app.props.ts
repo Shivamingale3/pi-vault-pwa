@@ -46,3 +46,13 @@ export interface ThemeContextValue {
   resolved: ResolvedTheme;
   setPreference: (preference: ThemePreference) => void;
 }
+
+export interface KdfParams {
+  salt: Uint8Array<ArrayBuffer>;
+  iterations: number;
+}
+
+export interface Sealed {
+  ciphertext: string;
+  iv: string;
+}

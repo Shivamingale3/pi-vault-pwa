@@ -8,7 +8,8 @@ import {
 
 import { TrustContext } from "@/contexts/trust.context";
 import type { TrustStatus } from "@/types/app.types";
-
+import { Splash } from "@/screens/states/splash";
+import { requestPersistence } from "@/lib/storage";
 export function TrustProvider({ children }: PropsWithChildren) {
   const [status, setStatus] = useState<TrustStatus>("checking");
   const [vaultKey, setVaultKey] = useState<CryptoKey | null>(null);
@@ -19,6 +20,8 @@ export function TrustProvider({ children }: PropsWithChildren) {
     let active = true;
 
     void (async () => {
+      await requestPersistence();
+
       // TODO(phase-3): read the trust store and derive the real status.
       const next: TrustStatus = "needs-login";
       if (active) setStatus(next);
@@ -47,6 +50,8 @@ export function TrustProvider({ children }: PropsWithChildren) {
     document.addEventListener("visibilitychange", onHide);
     return () => document.removeEventListener("visibilitychange", onHide);
   }, [lock]);
+
+  if (status === "checking") return <Splash />;
 
   return (
     <TrustContext value={{ status, vaultKey, unlock, lock }}>
